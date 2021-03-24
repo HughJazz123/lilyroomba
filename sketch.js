@@ -33,8 +33,11 @@ function preload() {
   gfd = loadSound("static/audio/godfuckindammit.mp3");
   motherfucker = loadSound("static/audio/motherfucker.mp3");
   rufs = loadSound("static/audio/rufs.mp3");
+  bust_nut = loadSound("static/audio/bust_a_nut.mp3");
+  big_tiddies = loadSound("static/audio/big_tiddies.mp3");
+  small_tiddies = loadSound("static/audio/small_tiddies.mp3");
 
-  sounds = [fuck1, fuck2, gfd, motherfucker, rufs];
+  sounds = [fuck1, fuck2, gfd, motherfucker, rufs, small_tiddies, big_tiddies, bust_nut];
   noLoop();
 }
 function setup() {
@@ -78,43 +81,37 @@ function draw() {
   if (x + img.width >= width) {
     xspeed = -xspeed;
     x = width - img.width;
-    if (yspeed>0){
-      angle+=90
-    } else {
-      angle-=90
-    }
     playSound();
   } else if (x <= 0) {
     xspeed = -xspeed;
     x = 0;
-    if (yspeed>0){
-      angle-=90;
-    } else {
-      angle+=90;
-    }
     playSound();
   }
 
   if (y + img.height >= height) {
     yspeed = -yspeed;
     y = height - img.height;
-    if (xspeed>0){
-      angle-=90;
-    } else {
-      angle+=90;
-    }
     playSound();
   } else if (y <= 0) {
     yspeed = -yspeed;
     y = 0;
-    if (xspeed>0){
-      angle+=90;
-    } else {
-      angle-=90;
-    }
     playSound();
   }
-
+  
+  if (yspeed>0){
+    if (xspeed>0){
+      angle = 0;
+    } else {
+      angle = 90;
+    }
+  }
+  else{
+    if (xspeed>0){
+      angle = 270;
+    } else {
+      angle = 180;
+    }
+  }
 }
 
 function touchStarted() {
